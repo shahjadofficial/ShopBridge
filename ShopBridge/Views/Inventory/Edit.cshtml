@@ -1,0 +1,61 @@
+﻿@model ShopBridge.Models.Inventory
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+<div>
+    @using (Html.BeginForm("Edit", "Inventory", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <table class="table">
+            <tr>
+                <td>@Html.LabelFor(model => model.name)</td>
+                <td>
+                    @Html.TextBoxFor(model => model.name)
+                    @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+                </td>
+            
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(model => model.price)</td>
+                <td>@Html.TextBoxFor(model => model.price)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(model => model.noOfAvailibity)</td>
+                <td>
+                    @Html.TextBoxFor(model => model.noOfAvailibity)
+                    @Html.ValidationMessageFor(model => model.noOfAvailibity, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(model => model.availbility)</td>
+                <td>
+                    @Html.DropDownListFor(model => model.availbility, new List<SelectListItem>
+                        {
+                         new SelectListItem() {Text = "Yes", Value="True"},
+                         new SelectListItem() {Text = "No", Value="False"},
+                        })
+                </td>  @*<td>@Html.LabelFor(model => model.availbility)</td>
+                    <td>@Html.TextBoxFor(model => model.availbility)</td>*@
+
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(model => model.description)</td>
+                <td>@Html.TextBoxFor(model => model.description)</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Save" class="btn btn-success" /></td>
+            </tr>
+        </table>
+    }
+</div>
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2 style="color:aqua">Shop Bridge</h2>
+
+<div align="center">
+    <a href="@Url.Action("Create","Inventory")">Add New Product</a>
+    <br/><br/>
+    <table cellpadding="2" class="table table-responsive table-striped table-hover" cellspacing="2" border="1">
+        <tr>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Stock</th>
+            <th>Available</th>
+            <th>Description</th>
+            <th>Action</th>
+        </tr>
+        @foreach(var pro in ViewBag.listProducts)
+        {
+            <tr>
+                <td>@pro.name</td>
+                <td>@pro.price</td>
+                <td>@pro.noOfAvailibity</td>
+                @if(@pro.availbility==true)
+                {
+                     <td>@Html.Raw("Yes")</td>
+                }
+                else
+                {
+                     <td>@Html.Raw("No")</td>
+                }
+                
+                <td>@pro.description</td>
+                <td>
+                    <a onclick="return confirm('Do you want to delete ?')" href="@Url.Action("Delete", "Inventory", new { id = pro.id })">Delete</a>
+                    <a href="@Url.Action("Edit","Inventory", new { id=pro.id })">Edit</a>
+                </td>
+            </tr>
+
+        }
+        
+    </table>
+</div>
